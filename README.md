@@ -71,3 +71,30 @@ npm run start:dev
 ```
 
 5. The backend server should now be running on http://localhost:8080.
+
+### Step 3: Frontend Setup (Next.js)
+Navigate to the frontend directory:
+
+```bash
+cd my-next-app
+npm install
+```
+
+1. Set up environment variables by creating a .env.local file:
+
+```bash
+PUBLIC_URL='http://localhost:3000'
+NODE_ENV='production'
+HOST=0.0.0.0
+PORT=3001
+NEXT_PUBLIC_BOT_USERNAME=MagisterUniversBot
+NEXT_PUBLIC_BOT_TOKEN=7925198405:AAFQRQOSO_w6vMBgUEQBhtGZ_s86Imen0Lc
+```
+
+2. Build and start the frontend server:
+
+```bash
+npm run build && npm run start
+```
+
+3. The frontend server will now be available at http://127.0.0.1:80.
