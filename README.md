@@ -118,3 +118,15 @@ npm run build && npm run start
 - npm run dev: Run the frontend in development mode.
 - npm run build: Build the application for production.
 - npm run start: Start the production server.
+
+### Reporting Issues
+
+If you encounter any issues or have suggestions for improvements, please open an issue on the repository's issue tracker. Provide as much detail as possible, including steps to reproduce the problem, screenshots (if applicable), and environment details (OS, browser, etc.).
+
+### Development Tips
+
+Ensure that both frontend and backend environments are properly configured before starting development.
+Verify that PostgreSQL is running and accessible, and check your environment variables if you encounter connection issues.
+If your bot token or username changes, update the corresponding environment variables in .env.local for the frontend.
+
+### This project is licensed under the MIT License. See the LICENSE file for more details.
