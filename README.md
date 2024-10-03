@@ -18,3 +18,9 @@ This project is a platform that enables user registration via Telegram and allow
 
 ```bash
 git clone https://github.com/your-repo/my-project.git
+```
+
+# Once cloned, navigate into the two directories:
+
+Frontend: my-next-app
+Backend: my-nest-testing
