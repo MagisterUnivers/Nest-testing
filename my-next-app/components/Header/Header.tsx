@@ -38,7 +38,7 @@ export function Header(): React.ReactNode {
         <form className="ml-auto flex-1 sm:flex-initial">
           <input
             type="text"
-            placeholder="Search products..."
+            placeholder="Search user..."
             className="p-[15px] sm:w-[300px] md:w-[200px] lg:w-[300px] text-black"
           />
         </form>

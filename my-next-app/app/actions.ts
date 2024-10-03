@@ -82,6 +82,33 @@ export async function getCurrentUser(
   }
 }
 
+export async function getUserById(
+  userId: number,
+  setStateFunc: Dispatch<SetStateAction<UserObject | null>>,
+  setLoadingState: Dispatch<SetStateAction<boolean>>
+): Promise<void> {
+  try {
+    const response = await fetch(`http://localhost:8080/users/current/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: undefined,
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to send data')
+    }
+
+    const result = await response.json()
+    setStateFunc(result as UserObject)
+  } catch (error) {
+    console.error('Error sending data to backend:', error)
+  } finally {
+    setLoadingState(false)
+  }
+}
+
 export async function getAllUsers(
   setStateFunc: Dispatch<SetStateAction<UserObject[] | null>>,
   setLoadingState: Dispatch<SetStateAction<boolean>>
@@ -100,7 +127,7 @@ export async function getAllUsers(
     }
 
     const result = await response.json()
-    setStateFunc(result as UserObject)
+    setStateFunc(result as UserObject[])
   } catch (error) {
     console.error('Error sending data to backend:', error)
   } finally {
