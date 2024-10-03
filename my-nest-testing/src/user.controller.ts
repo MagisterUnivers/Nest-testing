@@ -1,5 +1,6 @@
 import { Post, Put, Get, Body, Param, Controller } from '@nestjs/common';
 import { UserService } from './user.service';
+import { User } from './user.entity';
 
 @Controller('users')
 export class UserController {
@@ -55,7 +56,12 @@ export class UserController {
   }
 
   @Get('find/:id')
-  async getUserById(@Param('id') id: number): Promise<boolean> {
+  async IsUserExistById(@Param('id') id: number): Promise<boolean> {
+    return this.userService.isUserExistById(id)
+  }
+
+  @Get('current/:id')
+  async getUserById(@Param('id') id: number): Promise<User> {
     return this.userService.getUserById(id)
   }
 }

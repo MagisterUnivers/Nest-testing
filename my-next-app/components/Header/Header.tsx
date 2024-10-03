@@ -28,7 +28,7 @@ export function Header(): React.ReactNode {
           Browse Users
         </Link>
         <Link
-          href="/my-profile"
+          href="/profile"
           className="text-muted-foreground transition-colors hover:text-foreground text-black"
         >
           Dashboard

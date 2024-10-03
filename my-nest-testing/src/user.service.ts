@@ -42,8 +42,13 @@ export class UserService {
     return this.usersRepository.find()
   }
 
-  async getUserById(id: number): Promise<boolean> {
+  async isUserExistById(id: number): Promise<boolean> {
     const user = await this.usersRepository.findOneBy({ telegram_id: id })
     return user !== null
+  }
+
+  async getUserById(id: number): Promise<User> {
+    const user = await this.usersRepository.findOneBy({ telegram_id: id })
+    return user
   }
 }

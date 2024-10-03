@@ -1,15 +1,17 @@
 'use client'
 
-import { createUserAction, updateUserAction } from "@/app/actions";
+import { createUserAction, getAllUsers, updateUserAction } from "@/app/actions";
 import Cookies from 'js-cookie'
 import { ProfilePreview } from "@/components/ProfilePreview/ProfilePreview";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/Header/Header";
+import { UserCard } from "@/components/Cards/UserCard";
 
 export default function Page() {
   const searchParams = useSearchParams()
   const [userData, setUserData] = useState<UserObject | null>(null)
+  const [allUsersData, setAllUsersData] = useState<UserObject[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const id = searchParams.get('id')
 
@@ -67,6 +69,12 @@ export default function Page() {
     }
   }, [])
 
+  useEffect(() => {
+    if (id === null) {
+      getAllUsers(setAllUsersData, setIsLoading).then(() => { }).catch((err) => console.error(err))
+    }
+  }, [])
+
   if (isLoading) {
     return <div>Loading...</div>
   }
@@ -79,6 +87,13 @@ export default function Page() {
       <main className="flex flex-col gap-8 row-start-2 items-center justify-center w-full h-screen">
         {id !== null && (
           <ProfilePreview userProps={userData} />
+        )}
+        {id === null && (
+          <ul className="flex flex-col gap-[15px] items-center justify-center">
+            {allUsersData?.map(user => (
+              <UserCard key={user.id} userData={user} />
+            ))}
+          </ul>
         )}
       </main >
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center" />
