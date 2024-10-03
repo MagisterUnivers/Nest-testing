@@ -66,6 +66,9 @@ CREATE TABLE tg_users (
 );
 ```
 
+![image](https://github.com/user-attachments/assets/6110bbf6-121d-4cc6-b0f7-86f861711e5a)
+
+
 4. Start the backend server:
 
 ```bash
