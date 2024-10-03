@@ -41,7 +41,8 @@ export class UserService {
     return this.usersRepository.find()
   }
 
-  async getUserById(id: number): Promise<User | null> {
-    return this.usersRepository.findOne({ where: { id } })
+  async getUserById(id: number): Promise<boolean> {
+    const user = await this.usersRepository.findOneBy({ telegram_id: id })
+    return user !== null
   }
 }

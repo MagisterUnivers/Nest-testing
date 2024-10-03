@@ -25,7 +25,7 @@ export class User {
   auth_date: string
 
   @Column()
-  hash: string | null
+  hash: string
 
   @Column({ default: true })
   isActive: boolean;
