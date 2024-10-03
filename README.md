@@ -104,3 +104,17 @@ npm run build && npm run start
 - Telegram Authentication: Users can securely log in through the Telegram bot (@MagisterUniversBot).
 - User List: View all registered users.
 - Profile Page: Users can view their profiles, but editing is disabled for security purposes.
+
+### Available Scripts
+
+# Backend (NestJS)
+
+- npm run start: Start the server in production mode.
+- npm run start:dev: Start the server in development mode (with hot reloading).
+- npm run test: Run tests.
+
+# Frontend (Next.js)
+
+- npm run dev: Run the frontend in development mode.
+- npm run build: Build the application for production.
+- npm run start: Start the production server.
