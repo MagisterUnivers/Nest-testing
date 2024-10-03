@@ -56,11 +56,13 @@ CREATE DATABASE test_db;
 \c test_db;
 CREATE TABLE tg_users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    telegram_id BIGINT UNIQUE NOT NULL,
     first_name VARCHAR(100),
     last_name VARCHAR(100),
-    profile_picture TEXT
+    username VARCHAR(50) NOT NULL,
+    telegram_id BIGINT UNIQUE NOT NULL,
+    profile_picture varchar(128),
+    auth_date timestamp,
+    hash varchar(128)
 );
 ```
 
@@ -88,7 +90,7 @@ NODE_ENV='production'
 HOST=0.0.0.0
 PORT=3001
 NEXT_PUBLIC_BOT_USERNAME=MagisterUniversBot
-NEXT_PUBLIC_BOT_TOKEN=7925198405:AAFQRQOSO_w6vMBgUEQBhtGZ_s86Imen0Lc
+NEXT_PUBLIC_BOT_TOKEN=7925198405:AAFQRQOSO_w6vMBgU
 ```
 
 2. Build and start the frontend server:
