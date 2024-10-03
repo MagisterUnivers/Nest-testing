@@ -15,6 +15,12 @@ export function Header(): React.ReactNode {
   const { handleSearchChange } = SearchContext
   const router = useRouter()
 
+  function handleFocus(): void {
+    if (window.location.pathname !== '/admin') {
+      router.push('/admin')
+    }
+  }
+
   function CustomLogout(): void {
     Logout()
     router.push('/login')
@@ -45,6 +51,7 @@ export function Header(): React.ReactNode {
           <input
             type="text"
             placeholder="Search user..."
+            onFocus={() => handleFocus()}
             onChange={(e) => handleSearchChange(e)}
             className="p-[15px] sm:w-[300px] md:w-[200px] lg:w-[300px] text-black"
           />

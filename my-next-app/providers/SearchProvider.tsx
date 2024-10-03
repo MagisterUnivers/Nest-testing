@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, createContext, useContext, useState } from 'react'
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 
 interface Props {
   children: ReactNode
@@ -19,6 +19,23 @@ export function SearchProvider({ children }: Props): React.ReactNode {
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>): void {
     setSearchQuery(e.target.value)
   }
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      if (!window.location.pathname.startsWith('/admin')) {
+        setSearchQuery('')
+      }
+    })
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
 
   const initialValue = {
     value: searchQuery,
