@@ -98,3 +98,9 @@ npm run build && npm run start
 ```
 
 3. The frontend server will now be available at http://127.0.0.1:80.
+
+### Application Flow
+
+- Telegram Authentication: Users can securely log in through the Telegram bot (@MagisterUniversBot).
+- User List: View all registered users.
+- Profile Page: Users can view their profiles, but editing is disabled for security purposes.
