@@ -19,7 +19,6 @@ export async function createUserAction(
     }
 
     const result = await response.json()
-    console.log(result, 'result')
     setStateFunc(result as UserObject)
   } catch (error) {
     console.error('Error sending data to backend:', error)
@@ -47,7 +46,6 @@ export async function updateUserAction(
     }
 
     const result = await response.json()
-    console.log(result, 'result')
     setStateFunc(result as UserObject)
   } catch (error) {
     console.error('Error sending data to backend:', error)

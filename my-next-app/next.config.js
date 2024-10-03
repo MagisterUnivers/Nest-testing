@@ -1,6 +1,8 @@
 const isProd = process.env.NODE_ENV === 'production'
 
-const remotePatterns = []
+const remotePatterns = [{
+    hostname: 't.me'
+  }]
 
 if (!isProd) {
   remotePatterns.push({
@@ -20,5 +22,6 @@ module.exports = {
   images: {
     remotePatterns
   },
+   reactStrictMode: false,
   assetPrefix: isProd ? process.env.PUBLIC_URL : undefined
 }
