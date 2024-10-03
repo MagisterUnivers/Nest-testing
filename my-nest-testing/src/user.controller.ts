@@ -1,5 +1,6 @@
 import { Post, Put, Get, Body, Param, Controller } from '@nestjs/common';
 import { UserService } from './user.service';
+import { User } from './user.entity';
 
 @Controller('users')
 export class UserController {
@@ -12,7 +13,8 @@ export class UserController {
     @Body('telegram_id') telegram_id: number,
     @Body('telegram_username') telegram_username: string | null,
     @Body('profile_picture') profile_picture: string | null,
-    @Body('auth_date') auth_date: string
+    @Body('auth_date') auth_date: string,
+    @Body('hash') hash: string
   ) {
     return this.userService.createUser(
       first_name,
@@ -20,8 +22,9 @@ export class UserController {
       telegram_id,
       telegram_username,
       profile_picture,
-      auth_date
-    );
+      auth_date,
+      hash
+    )
   }
 
   @Put(':id')
@@ -32,7 +35,8 @@ export class UserController {
     @Body('telegram_id') telegram_id: number,
     @Body('telegram_username') telegram_username: string | null,
     @Body('profile_picture') profile_picture: string | null,
-    @Body('auth_date') auth_date: string
+    @Body('auth_date') auth_date: string,
+    @Body('hash') hash: string
   ) {
     return this.userService.updateUser(
       id,
@@ -41,11 +45,18 @@ export class UserController {
       telegram_id,
       telegram_username,
       profile_picture,
-      auth_date);
+      auth_date,
+      hash
+    )
   }
 
   @Get()
   async getAllUsers() {
     return this.userService.getAllUsers();
+  }
+
+  @Get('find')
+  async getUserById(@Param('id') id: number): Promise<User | null> {
+    return this.userService.getUserById(id);
   }
 }

@@ -11,31 +11,37 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) { }
 
-  async createUser(first_name: string, last_name: string | null, telegram_id: number, telegram_username: string | null, profile_picture: string | null, auth_date: string): Promise<User> {
+  async createUser(first_name: string, last_name: string | null, telegram_id: number, telegram_username: string | null, profile_picture: string | null, auth_date: string, hash: string): Promise<User> {
     const newUser = this.usersRepository.create({
       first_name,
       last_name,
       telegram_id,
       telegram_username,
       profile_picture,
-      auth_date
+      auth_date,
+      hash
     })
     return this.usersRepository.save(newUser);
   }
 
-  async updateUser(id: number, first_name: string, last_name: string | null, telegram_id: number, telegram_username: string | null, profile_picture: string | null, auth_date: string): Promise<User> {
+  async updateUser(id: number, first_name: string, last_name: string | null, telegram_id: number, telegram_username: string | null, profile_picture: string | null, auth_date: string, hash: string): Promise<User> {
     await this.usersRepository.update(id, {
       first_name,
       last_name,
       telegram_id,
       telegram_username,
       profile_picture,
-      auth_date
-    });
-    return this.usersRepository.findOneBy({ id });
+      auth_date,
+      hash
+    })
+    return this.usersRepository.findOneBy({ id })
   }
 
   async getAllUsers(): Promise<User[]> {
-    return this.usersRepository.find();
+    return this.usersRepository.find()
+  }
+
+  async getUserById(id: number): Promise<User | null> {
+    return this.usersRepository.findOne({ where: { id } })
   }
 }
