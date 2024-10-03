@@ -11,13 +11,27 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) { }
 
-  async createUser(name: string, email: string): Promise<User> {
-    const newUser = this.usersRepository.create({ name, email })
+  async createUser(first_name: string, last_name: string | null, telegram_id: number, telegram_username: string | null, profile_picture: string | null, auth_date: string): Promise<User> {
+    const newUser = this.usersRepository.create({
+      first_name,
+      last_name,
+      telegram_id,
+      telegram_username,
+      profile_picture,
+      auth_date
+    })
     return this.usersRepository.save(newUser);
   }
 
-  async updateUser(id: number, name: string, email: string): Promise<User> {
-    await this.usersRepository.update(id, { name, email });
+  async updateUser(id: number, first_name: string, last_name: string | null, telegram_id: number, telegram_username: string | null, profile_picture: string | null, auth_date: string): Promise<User> {
+    await this.usersRepository.update(id, {
+      first_name,
+      last_name,
+      telegram_id,
+      telegram_username,
+      profile_picture,
+      auth_date
+    });
     return this.usersRepository.findOneBy({ id });
   }
 
