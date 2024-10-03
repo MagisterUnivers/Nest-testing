@@ -12,6 +12,8 @@ export class UserService {
   ) { }
 
   async createUser(first_name: string, last_name: string | null, telegram_id: number, telegram_username: string | null, profile_picture: string | null, auth_date: string, hash: string): Promise<User> {
+    const isUser = await this.usersRepository.findOneBy({ telegram_id })
+    if (isUser !== null) return
     const newUser = this.usersRepository.create({
       first_name,
       last_name,
@@ -25,7 +27,7 @@ export class UserService {
   }
 
   async updateUser(id: number, first_name: string, last_name: string | null, telegram_id: number, telegram_username: string | null, profile_picture: string | null, auth_date: string, hash: string): Promise<User> {
-    await this.usersRepository.update(id, {
+    await this.usersRepository.update({ telegram_id }, {
       first_name,
       last_name,
       telegram_id,
@@ -34,7 +36,7 @@ export class UserService {
       auth_date,
       hash
     })
-    return this.usersRepository.findOneBy({ id })
+    return this.usersRepository.findOneBy({ telegram_id })
   }
 
   async getAllUsers(): Promise<User[]> {

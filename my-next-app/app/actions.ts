@@ -34,8 +34,8 @@ export async function updateUserAction(
   setLoadingState: Dispatch<SetStateAction<boolean>>
 ): Promise<void> {
   try {
-    const response = await fetch('http://localhost:8080/users', {
-      method: 'POST',
+    const response = await fetch(`http://localhost:8080/users/${queryParams.telegram_id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },

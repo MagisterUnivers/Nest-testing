@@ -2,11 +2,11 @@
 
 import { createUserAction, updateUserAction } from "@/app/actions";
 import { ProfilePreview } from "@/components/ProfilePreview/ProfilePreview";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const router = useRouter()
+  // const router = useRouter()
   const searchParams = useSearchParams()
   const [userData, setUserData] = useState<UserObject | null>(null)
   const [isLoading, setIsLoading] = useState(true)
