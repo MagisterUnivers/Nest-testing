@@ -1,5 +1,6 @@
 'use client'
 
+import { useSearchProvider } from "@/providers/SearchProvider"
 import { AuthCheck } from "@/utils/auth-check"
 import { Logout } from "@/utils/logout"
 import Link from "next/link"
@@ -7,6 +8,11 @@ import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 
 export function Header(): React.ReactNode {
+  const SearchContext = useSearchProvider()
+  if (!SearchContext) {
+    throw new Error("SearchContext must be used within a SearchProvider");
+  }
+  const { handleSearchChange } = SearchContext
   const router = useRouter()
 
   function CustomLogout(): void {
@@ -39,6 +45,7 @@ export function Header(): React.ReactNode {
           <input
             type="text"
             placeholder="Search user..."
+            onChange={(e) => handleSearchChange(e)}
             className="p-[15px] sm:w-[300px] md:w-[200px] lg:w-[300px] text-black"
           />
         </form>

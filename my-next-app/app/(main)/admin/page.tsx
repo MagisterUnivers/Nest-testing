@@ -7,8 +7,14 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/Header/Header";
 import { UserCard } from "@/components/Cards/UserCard";
+import { useSearchProvider } from "@/providers/SearchProvider";
 
 export default function Page() {
+  const SearchContext = useSearchProvider()
+  if (!SearchContext) {
+    throw new Error("SearchContext must be used within a SearchProvider");
+  }
+  const { value } = SearchContext
   const searchParams = useSearchParams()
   const [userData, setUserData] = useState<UserObject | null>(null)
   const [allUsersData, setAllUsersData] = useState<UserObject[] | null>(null)
@@ -90,7 +96,7 @@ export default function Page() {
         )}
         {id === null && (
           <ul className="flex flex-col gap-[15px] items-center justify-center">
-            {allUsersData?.map(user => (
+            {allUsersData?.filter(user => user.first_name.includes(value)).map(user => (
               <UserCard key={user.id} userData={user} />
             ))}
           </ul>
